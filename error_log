@@ -1,0 +1,8 @@
+[16-May-2019 14:59:41 Asia/Kolkata] PHP Fatal error:  Call to undefined method MY_Loader::_view_count() in /home/propertytv/public_html/application/views/templates/authors/index.php on line 4
+[23-Jul-2019 09:31:46 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 29440 bytes) in /home/propertytv/public_html/system/libraries/Image_lib.php on line 1463
+[23-Jul-2019 09:33:03 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 29440 bytes) in /home/propertytv/public_html/system/libraries/Image_lib.php on line 1463
+[23-Jul-2019 09:38:29 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 29440 bytes) in /home/propertytv/public_html/system/libraries/Image_lib.php on line 1463
+[04-Oct-2019 11:22:34 UTC] PHP Fatal error:  Cannot redeclare Test_mail::send_mail_1() in /home/propertytv/public_html/application/controllers/Test_mail.php on line 33
+[11-Oct-2019 22:10:51 Asia/Kolkata] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20420 bytes) in /home/propertytv/public_html/system/libraries/Image_lib.php on line 1463
+[16-Oct-2019 10:43:37 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in /home/propertytv/public_html/application/views/user/profile/edit.php on line 279
+[16-Oct-2019 10:43:44 Asia/Kolkata] PHP Parse error:  syntax error, unexpected end of file in /home/propertytv/public_html/application/views/user/profile/edit.php on line 279
