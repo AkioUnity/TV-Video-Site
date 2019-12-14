@@ -124,11 +124,16 @@ if ($related_news) {
                             } else if (!empty($news_details->video_file)) {
                                 ?>
                                 <div class="post first text-bigger hover-dark entry-media">
+                                    <video controls width="100%">
+                                        <source src="<?= $news_details->video_file ?>" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
                                     <div class="image video-frame">
-                                        <img src="<?= !empty($article_img) ? $article_img : 'assets/uploads/no-image.gif' ?>"
-                                             alt="Post image"/>
-                                        <a class="video-player video-player-center video-player-large"
-                                           href="assets/uploads/news/<?= $news_details->video_file ?>"></a>
+<!--                                        <img src="--><?//= !empty($article_img) ? $article_img : 'assets/uploads/no-image.gif' ?><!--"-->
+<!--                                             alt="Post image"/>-->
+<!--                                        <a class="video-player video-player-center video-player-large"-->
+<!--                                           href="--><?//= $news_details->video_file ?><!--">                                            -->
+<!--                                        </a>-->
                                     </div>
                                 </div>
                                 <!-- /End Video or Photo Placeholder -->

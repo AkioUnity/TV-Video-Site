@@ -24,15 +24,14 @@ class S3_upload {
 		// generate unique filename
 		$file = pathinfo($file_path);
 		$s3_file = $file['filename'].'-'.rand(1000,1).'.'.$file['extension'];
-		$mime_type = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $file_path);
+//		$mime_type = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $file_path);
 
 		$saved = $this->CI->s3->putObjectFile(
 			$file_path,
 			$this->bucket_name,
 			$this->folder_name.$s3_file,
 			S3::ACL_PUBLIC_READ,
-			array(),
-			$mime_type
+			array()
 		);
 		if ($saved) {
 			return $this->s3_url.$this->bucket_name.'/'.$this->folder_name.$s3_file;

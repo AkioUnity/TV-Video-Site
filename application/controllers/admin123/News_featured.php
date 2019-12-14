@@ -203,27 +203,49 @@ class News_featured extends Admin_Controller
     function ajax_upload()
     {
         $this->load->helper('string');
-        $id = $this->input->post('id');
         $ret = array();
         $config['upload_path'] = './assets/uploads/news';
         $config['allowed_types'] = '*';
 
         //$config['allowed_types'] = config_item('allow_data_type');
         $config['max_size'] = '200000000000';
-        $this->load->library('upload', $config);
-        if (!$this->upload->do_upload('myfile')) {
+//        $this->load->library('upload', $config);
+        $dir = dirname($_FILES["myfile"]["tmp_name"]);
+        $fileName = $dir . DIRECTORY_SEPARATOR . $_FILES["myfile"]["name"];
+        rename($_FILES["myfile"]["tmp_name"], $fileName);
+        $upload = $this->s3_upload->upload_file($fileName);
+//        if (!$this->upload->do_upload('myfile')) {
+        if (!$upload) {
             $ret['result'] = 'error';
             $ret['msg'] = $this->upload->display_errors();
             //redirect('admin/add_coach');
         } else {
-            $upload_info = $this->upload->data();
+//            $upload_info = $this->upload->data();
             $ret['result'] = 'success';
-            $ret['msg'] = $upload_info['file_name'];
+//            $ret['msg'] = $upload_info['file_name'];
+            $ret['msg'] = $upload;
 
         }
         echo json_encode($ret);
     }
 
+    public function aws_upload()
+    {
+        $filesCount = count($_FILES['files']['name']);
+        for($i = 0; $i < $filesCount; $i++){
+            $_FILES['file']['name']     = $_FILES['files']['name'][$i];
+            $_FILES['file']['type']     = $_FILES['files']['type'][$i];
+            $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+            $_FILES['file']['error']    = $_FILES['files']['error'][$i];
+            $_FILES['file']['size']     = $_FILES['files']['size'][$i];
+
+            $dir = dirname($_FILES["file"]["tmp_name"]);
+            $destination = $dir . DIRECTORY_SEPARATOR . $_FILES["file"]["name"];
+            rename($_FILES["file"]["tmp_name"], $destination);
+
+            $upload = $this->s3_upload->upload_file($destination);
+        }
+    }
 
     function delete_video()
     {
@@ -272,155 +294,6 @@ class News_featured extends Admin_Controller
                 redirect($redirect);
             }
             redirect($this->data['admin_link'] . '');
-        }
-    }
-
-    function aws_upload()
-    {
-        //print_r($_FILES);
-        $file = $_FILES['agent_profile_file']['tmp_name'];
-        if (file_exists($file)) {
-            $allowedExts = array("gif", "jpeg", "jpg", "png");
-            $typefile = explode(".", $_FILES["agent_profile_file"]["name"]);
-            $extension = end($typefile);
-
-            if (!in_array(strtolower($extension), $allowedExts)) {
-                //not image
-                $data['message'] = "images";
-            } else {
-                $userid = $this->session->userdata['user_login']['userid'];
-
-                $full_path = "agent_image/" . $userid . "/profileImg/";
-
-                /*if(!is_dir($full_path)){
-                mkdir($full_path, 0777, true);
-                }*/
-                $path = $_FILES['agent_profile_file']['tmp_name'];
-
-                $image_name = $full_path . preg_replace("/[^a-z0-9\._]+/", "-", strtolower(uniqid() . $_FILES['agent_profile_file']['name']));
-                //move_uploaded_file($path,$image_name);
-
-                $data['message'] = "sucess";
-
-                $s3_bucket = s3_bucket_upload($path, $image_name);
-
-                if ($s3_bucket['message'] == "sucess") {
-                    $data['imagename'] = $s3_bucket['imagepath'];
-                    $data['imagepath'] = $s3_bucket['imagename'];
-                }
-
-                //print_r($imagesizedata);
-                //image
-                //use $imagesizedata to get extra info
-            }
-        } else {
-            //not file
-            $data['message'] = "images";
-        }
-        echo json_encode($data);
-        //$file_name2 = preg_replace("/ /", "-", $file_name);
-    }
-
-// Helper file add code
-// image compress code
-    function compress($source, $destination, $quality)
-    {
-        ob_start();
-        $info = getimagesize($source);
-
-        if ($info['mime'] == 'image/jpeg') {
-            $image = imagecreatefromjpeg($source);
-        } elseif ($info['mime'] == 'image/gif') {
-            $image = imagecreatefromgif($source);
-        } elseif ($info['mime'] == 'image/png') {
-            $image = imagecreatefrompng($source);
-        }
-
-        $filename = tempnam(sys_get_temp_dir(), "beyondbroker");
-
-        imagejpeg($image, $filename, $quality);
-
-        //ob_get_contents();
-        $imagedata = ob_end_clean();
-        return $filename;
-    }
-
-// type for if image then it will reduce size
-// site for it in web of mobile because mobile webservice image will in base 64
-// $tempth will file temp path
-// $image_path will file where to save path
-
-    function s3_bucket_upload($temppath, $image_path, $type = "image", $site = "web")
-    {
-        $bucket = "bucket-name";
-
-        $data = array();
-
-        $data['message'] = "false";
-
-        // For website only
-        if ($site == "web") {
-            if ($type == "image") {
-                $file_Path = compress($temppath, $image_path, 90);
-            } else {
-                $file_Path = $temppath;
-            }
-        }
-
-        try {
-            $s3Client = new S3Client([
-                'version' => 'latest',
-                'region' => 'us-west-2',
-                'credentials' => [
-                    'key' => 'aws-key',
-                    'secret' => 'aws-secretkey',
-                ],
-            ]);
-
-            // For website only
-            if ($site == "web") {
-
-                $result = $s3Client->putObject([
-                    'Bucket' => $bucket,
-                    'Key' => $image_path,
-                    'SourceFile' => $file_Path,
-                    //'body'=> $file_Path,
-                    'ACL' => 'public-read',
-                    //'StorageClass' => 'REDUCED_REDUNDANCY',
-                ]);
-
-                $data['message'] = "sucess";
-                $data['imagename'] = $image_path;
-                $data['imagepath'] = $result['ObjectURL'];
-            } else {
-                // $tmp = base64_decode($base64);
-                $upload = $s3Client->upload($bucket, $image_path, $temppath, 'public-read');
-                $data['message'] = "sucess";
-                $data['imagepath'] = $upload->get('ObjectURL');
-            }
-
-        } catch (Exception $e) {
-            $data['message'] = "false";
-            // echo $e->getMessage() . "\n";
-        }
-        return $data;
-    }
-
-    public function addImages($id)
-    {
-        $filesCount = count($_FILES['files']['name']);
-        for($i = 0; $i < $filesCount; $i++){
-            $_FILES['file']['name']     = $_FILES['files']['name'][$i];
-            $_FILES['file']['type']     = $_FILES['files']['type'][$i];
-            $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
-            $_FILES['file']['error']    = $_FILES['files']['error'][$i];
-            $_FILES['file']['size']     = $_FILES['files']['size'][$i];
-
-            $dir = dirname($_FILES["file"]["tmp_name"]);
-            $destination = $dir . DIRECTORY_SEPARATOR . $_FILES["file"]["name"];
-            rename($_FILES["file"]["tmp_name"], $destination);
-
-            $upload = $this->s3_upload->upload_file($destination);
         }
     }
 }

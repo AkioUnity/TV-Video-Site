@@ -33,7 +33,7 @@ $config['verify_peer'] = TRUE;
 |
 */
 
-$config['access_key'] = 'WRITE_YOUR_S3_ACCESS_KEY';
+$config['access_key'] = 'AKIA5JPUTC2PFF2B2HZQ';
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ $config['access_key'] = 'WRITE_YOUR_S3_ACCESS_KEY';
 |
 */
 
-$config['secret_key'] = 'WRITE_YOUR_S3_ACCESS_KEY';
+$config['secret_key'] = 'JzWpM7aTnWdxAji6sSJcBOluiEQNZiHIl6lE/snX';
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ $config['secret_key'] = 'WRITE_YOUR_S3_ACCESS_KEY';
 |
 */
 
-$config['bucket_name'] = 'WRITE_YOUR_S3_BUCKET_NAME';
+$config['bucket_name'] = 'ptvs3';
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ $config['bucket_name'] = 'WRITE_YOUR_S3_BUCKET_NAME';
 |
 */
 
-$config['folder_name'] = 'WRITE_YOUR_S3_BUCKETS_FOLDER_NAME';
+$config['folder_name'] = 'news/';
 
 /*
 |--------------------------------------------------------------------------
@@ -77,49 +77,5 @@ $config['folder_name'] = 'WRITE_YOUR_S3_BUCKETS_FOLDER_NAME';
 |
 */
 
-$config['s3_url'] = 'https://BUCKETNAME.amazonaws.com/';
+$config['s3_url'] = 'https://s3-ap-southeast-2.amazonaws.com/';
 
-/*
-|--------------------------------------------------------------------------
-| Use Enviroment?
-|--------------------------------------------------------------------------
-|
-| Get Settings from enviroment instead of this file? 
-| Used as best-practice on Heroku
-|
-*/
-
-$config['get_from_enviroment'] = FALSE;
-
-/*
-|--------------------------------------------------------------------------
-| Access Key Name
-|--------------------------------------------------------------------------
-|
-| Name for access key in enviroment
-|
-*/
-$config['access_key_envname'] = 'S3_KEY';
-
-/*
-|--------------------------------------------------------------------------
-| Access Key Name
-|--------------------------------------------------------------------------
-|
-| Name for access key in enviroment
-|
-*/
-$config['secret_key_envname'] = 'S3_SECRET';
-
-/*
-|--------------------------------------------------------------------------
-| If get from enviroment, do so and overwrite fixed vars above
-|--------------------------------------------------------------------------
-|
-*/
-
-if ($config['get_from_enviroment']){
-	$config['access_key'] = getenv($config['access_key_envname']);
-	$config['secret_key'] = getenv($config['secret_key_envname']);
-
-}
