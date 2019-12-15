@@ -188,6 +188,15 @@
   text-indent: 1px;
 }
 
+.video-popup {
+  position: relative;
+  /*background: #FFF;*/
+  /*padding: 20px;*/
+  width: auto;
+  max-width: 800px;
+  margin: auto;
+}
+
 #header .header-wrapper .right-content .user-profile .entry-name {
   position: relative;
   line-height: 65px;

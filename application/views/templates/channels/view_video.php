@@ -1,7 +1,5 @@
 <?php $this->load->view('templates/includes/header'); ?>
 <body class="">
-
-    
     <div class="wrapper">
 <?php //$this->load->view('templates/includes/menu'); ?>
 <?php $this->load->view('templates/channels/menu'); ?>
@@ -37,9 +35,6 @@
                         </div>
 
                         <h2 class="post-title">Buy your first home, The Top Ten Do's.</h2>
-
-
-
                         <div class="row">
 
                             <div class="col-md-2 entry-details">

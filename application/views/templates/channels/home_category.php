@@ -37,7 +37,7 @@ if ($category_list) {
                                                      style="background-image: url('<?= $image ?>');">
                                                     <img src="assets/frontends/images/1x1.png" alt="Proportion">
                                                     <a class="video-player video-player-small video-player-inside"
-                                                       href="<?php  echo (!empty($set_product->video_link))?$set_product->video_link:$set_product->video_file; ?>"></a>
+                                                       href="<?php echo $set_product->video_link?>"></a>
                                                 </div>
                                             </div>
                                         </div>

@@ -270,6 +270,8 @@ class Shows extends Frontend_Controller{
 				$video_file = '';
 			}
 			$data['video_file'] = $video_file;
+			if (isset($data['video_link']))
+                $data['video_link']=$data['video_file'];
 
 			$data['is_featured']	= 0;
 			if($this->input->post('is_featured')){
