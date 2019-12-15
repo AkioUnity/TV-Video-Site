@@ -8,6 +8,26 @@ class MY_Controller extends CI_Controller{
         $this->data['site_name'] = config_item('site_name');
 		$this->data['admin_link'] = 'admin123';	
 		$this->load->model(array('backend/account_model'));
+
+        $this->load->library('S3_upload');
+        $this->load->library('S3');
+    }
+
+    function ajax_upload()
+    {
+        $ret = array();
+        $dir = dirname($_FILES["myfile"]["tmp_name"]);
+        $fileName = $dir . DIRECTORY_SEPARATOR . $_FILES["myfile"]["name"];
+        rename($_FILES["myfile"]["tmp_name"], $fileName);
+        $upload = $this->s3_upload->upload_file($fileName);
+        if (!$upload) {
+            $ret['result'] = 'error';
+            $ret['msg'] = $this->upload->display_errors();
+        } else {
+            $ret['result'] = 'success';
+            $ret['msg'] = $upload;
+        }
+        echo json_encode($ret);
     }
 } 
 

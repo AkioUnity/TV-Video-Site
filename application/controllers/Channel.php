@@ -8,7 +8,6 @@ class Channel extends Frontend_Controller {
         $this->data['_cancel'] = 'channel';
         $this->perPage = 20;
 	}
-
 	
 	public function index($id = false,$type=false,$series=false,$episode=false){
 		if(!$id){

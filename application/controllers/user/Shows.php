@@ -439,29 +439,6 @@ class Shows extends Frontend_Controller{
 		$this->load->view($this->_mainView,$this->data);
 	}
 
-	function ajax_upload(){		
-		$this->load->helper('string');
-		$id = $this->input->post('id');
-		$ret =array();		
-		$config['upload_path'] = './assets/uploads/channels';
-		$config['allowed_types'] = '*';
-		
-		//$config['allowed_types'] = config_item('allow_data_type');
-		$config['max_size']	= '200000000000';
-		$this->load->library('upload', $config);
-		if (!$this->upload->do_upload('myfile')){
-			$ret['result']= 'error';
-			$ret['msg']= $this->upload->display_errors();
-			//redirect('admin/add_coach');
-		}
-		else{
-			$upload_info = $this->upload->data();
-			$ret['result']= 'success';
-			$ret['msg']= $upload_info['file_name'];
-		}
-	    echo json_encode($ret);		
-	}
-
 	function delete_video(){
 		$arr = array('status'=>'error','msge'=>'There is no video!!');
 		$id = $this->input->get('id');

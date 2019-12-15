@@ -12,10 +12,6 @@ class News_featured extends Admin_Controller
     {
         parent::__construct();
 
-        $this->load->library('S3_upload');
-        $this->load->library('S3');
-
-
         $this->checkPermissions('news_manage');
         //check for employee permission
 
@@ -198,35 +194,6 @@ class News_featured extends Admin_Controller
 
         $this->data['subview'] = $this->_subView . 'edit_featured';
         $this->load->view('admin/_layout_main', $this->data);
-    }
-
-    function ajax_upload()
-    {
-        $this->load->helper('string');
-        $ret = array();
-        $config['upload_path'] = './assets/uploads/news';
-        $config['allowed_types'] = '*';
-
-        //$config['allowed_types'] = config_item('allow_data_type');
-        $config['max_size'] = '200000000000';
-//        $this->load->library('upload', $config);
-        $dir = dirname($_FILES["myfile"]["tmp_name"]);
-        $fileName = $dir . DIRECTORY_SEPARATOR . $_FILES["myfile"]["name"];
-        rename($_FILES["myfile"]["tmp_name"], $fileName);
-        $upload = $this->s3_upload->upload_file($fileName);
-//        if (!$this->upload->do_upload('myfile')) {
-        if (!$upload) {
-            $ret['result'] = 'error';
-            $ret['msg'] = $this->upload->display_errors();
-            //redirect('admin/add_coach');
-        } else {
-//            $upload_info = $this->upload->data();
-            $ret['result'] = 'success';
-//            $ret['msg'] = $upload_info['file_name'];
-            $ret['msg'] = $upload;
-
-        }
-        echo json_encode($ret);
     }
 
     public function aws_upload()
