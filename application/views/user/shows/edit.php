@@ -1,4 +1,4 @@
-<script src="assets/plugins/jquery.validate.js"></script>   
+<script src="assets/plugins/jquery.validate.js"></script>
 <!-- START card -->
 <div class="card card-default m-t-20">
 <div class="card-body">
@@ -10,7 +10,7 @@
 <div class="card-title">
     <h5>New Show</h5>
 </div>
-<!-- Differentiate NEWS or Video or Audio --> 
+<!-- Differentiate NEWS or Video or Audio -->
 <div class="row">
         <div class="col-md-12 form-group m-b-0">
           <label>Show Type</label>
@@ -29,7 +29,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane in active" id="tab1">
-				            
+
               <div class="row">
 	              <div class="col-md-6 form-group">
                     <label>Upload your video</label>
@@ -40,9 +40,9 @@
 if(!empty($edit_form->video_file)){
 ?>
 <table class="" style="margin-left:10px">
-<tbody class="files" id="product_files_content">    
+<tbody class="files" id="product_files_content">
     <tr class="template-download " id="delete-file">
-        <td width="60%" class="name"><?=$edit_form->video_file?></td>
+        <td width="60%" class="name"><?= str_replace(S3_url,'', $edit_form->video_file) ?></td>
         <td width="10%" align="right" class="delete" >
         <a href="javascript:void(0);"  class="btn" onclick="delete_video(<?=$edit_form->rand_id?>)" >
 	        <i class="fa fa-times"></i>
@@ -54,16 +54,16 @@ if(!empty($edit_form->video_file)){
 <?php
 }
 else{
-?>        
+?>
 <div class="" style="margin-left:-10px;margin-top:2px;">
 
 <div id="fileuploader" class="fileuploader" style="background-color:#268abe"><i class="fa fa-plus"></i> Upload</div>
 
 <span id="filesUpload" class="filesUpload"></span>
 
-<div id="status"></div>        		            
+<div id="status"></div>
 
-<div style="clear:both"></div>                    
+<div style="clear:both"></div>
 <table class="" style="margin-top:10px;margin-left:10px">
 <tbody class="files" id="product_files_content">
 </tbody>
@@ -75,15 +75,15 @@ else{
 
 ?>
                             </div>
-                      
+
                 </div>
-              </div> 
+              </div>
             </div>
           </div>
-        </div>  
+        </div>
     </div>
-   <!--@Differentiate NEWS or Video or Audio -->    
-  </div>  
+   <!--@Differentiate NEWS or Video or Audio -->
+  </div>
 <?=form_open(NULL, array('class' => ' edit-form', 'role'=>'form','enctype'=>"multipart/form-data"))?>
 <input type="hidden" name="s_date" id="input-s_date" value="<?=$edit_form->s_date?>" />
 <input type="hidden" name="e_date" id="input-e_date"  value="<?=$edit_form->e_date?>" />
@@ -120,10 +120,10 @@ else{
 for($i=1;$i<=100;$i++){
 ?>
 <option value="<?=$i?>"><?=$i?></option>
-<?php	
+<?php
 }
-?>  
-</select>-->            
+?>
+</select>-->
             </div>
           </div>
           <div class="col-md-6 form-group">
@@ -133,7 +133,7 @@ for($i=1;$i<=100;$i++){
               <input type="number" name="episode_number" value="<?=$edit_form->episode_number?>" id="input-episode-number" class="form-control" required>
             </div>
           </div>
-      </div> 
+      </div>
       <div class="row">
           <div class="col-md-6 form-group">
             <label>Show Length</label>
@@ -163,16 +163,16 @@ for($i=1;$i<=100;$i++){
 <?php
 if($channel_list){
 	foreach($channel_list as $set_category){
-?>            
+?>
 <option value="<?=$set_category->id?>" <?=$set_category->enabled==1?'selected':''?>  data-url="<?=$set_category->channel_url?>" ><?=$set_category->name?></option>
 <?php
 	}
 }
-?>            
+?>
               </select>
             </div>
             <label id="category-error" class="error" for="channel_id"></label>
-            
+
           </div>
       </div>
     </div>
@@ -186,7 +186,7 @@ if($channel_list){
             </div>
         <input type="text" name="publish_date" value="<?=$edit_form->publish_date?>"  id="daterangepicker1" class="form-control" required/>
         </div>
-      </div>     
+      </div>
       <div class="form-group">
         <label>TAGS</label>
         <span class="help">e.g. "Corelogic, Auction, "</span>
@@ -206,12 +206,12 @@ if($channel_list){
 <?php
 if($category_list){
 	foreach($category_list as $set_category){
-?>            
+?>
 <option value="<?=$set_category->id?>" <?=$set_category->id==$edit_form->category?'selected':''?>><?=$set_category->name?></option>
 <?php
 	}
 }
-?>            
+?>
               </select>
             </div>
             <label id="category-error" class="error" for="category"></label>
@@ -240,13 +240,13 @@ if($category_list){
                       <i class="fa fa-copy"></i> copy url</a>
                   </span>
               </div>
-            
-          </div>  
+
+          </div>
       </div>
-      
+
 </div>
 
-<div class="col-lg-12"> 
+<div class="col-lg-12">
     <div class="card-title">
       <h5>Features <span title="Mouse over each help text below to view more detail" class="help small"> </span>
         </h5>
@@ -282,7 +282,7 @@ if($category_list){
         </div>
     </div>
   </div>
-<div class="col-lg-12"> 
+<div class="col-lg-12">
 <div class="row">
     <div class="col-md-3 form-group">
       <label>Hero Area</label>
@@ -294,10 +294,10 @@ if($category_list){
 </div>
 </div>
 
-    
+
   </div>
   <div class="row">
-    <div class="col-md-12">  
+    <div class="col-md-12">
       <div class="form-group">
             <label>Short Summary</label>
             <span class="help">This appears at the top of the article and in is used Search Engines like Google.</span>
@@ -308,7 +308,7 @@ if($category_list){
 
   <div class="row">
     <div class="col-md-12">
-      <div class="form-group">    
+      <div class="form-group">
           <label>Main Article</label>
             <span class="help">Add text to form an article. Embed code is permitted.</span>
             <div class="summernote-wrapper required">
@@ -319,7 +319,7 @@ if($category_list){
                   <label for="checkbox6">Check this box to create as an article?</label>
                   <span class="help">You can create this show as an article, it will appear in your channel and referenced from the Property TV article pages.</span>
           </div>
-      </div>   
+      </div>
     </div>
   </div>
   <div class="row">
@@ -334,7 +334,7 @@ if($category_list){
     <div class="col-md-6">
       <div class="form-group">
           <label>Cover Hero</label>
-          <span class="help">1920px x 1080px. This is the large image at the <b>top</b> of the page.</span>  
+          <span class="help">1920px x 1080px. This is the large image at the <b>top</b> of the page.</span>
           <div class="card-body no-scroll no-padding">
 <div class="fileinput fileinput-new" data-provides="fileinput">
 <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
@@ -351,20 +351,20 @@ if($category_list){
 
 </div>
 
-</div>          
+</div>
           </div>
       </div>
       </div>
-      
+
   </div>
     <button type="submit" class="btn btn-primary btn-cons btn-animated from-top fa fa-cloud-upload submitBtn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Saving..">
       <span>Make LIVE</span>
-    </button> 
+    </button>
 
 <button type="submit" name="draft" class="btn btn-warning btn-cons btn-animated from-top fa fa-save submitBtn" value="set" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Saving..">
       <span>Save Draft</span>
     </button>
-    
+
     <!--    <button type="button" class="btn btn-warning btn-cons btn-animated from-top fa fa-save">
       <span>Save Draft</span>
     </button>-->
@@ -373,8 +373,8 @@ if($category_list){
       </div>
     </div>
     <!-- END card -->
-        
-  
+
+
   <div class="p-l-15 p-r-15"></div>
   <hr>
 </div>
@@ -384,7 +384,7 @@ if($category_list){
 <script>
 $('.edit-form').on('keyup keypress', function(e) {
   var keyCode = e.keyCode || e.which;
-  if (keyCode === 13) { 
+  if (keyCode === 13) {
     e.preventDefault();
     return false;
   }
@@ -395,7 +395,7 @@ $( ".edit-form" ).validate({
 		category: {
 			required: "Please create a Category first",
 		},
-	}, 
+	},
 
 	submitHandler: function (form) {
 		var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> Saving..';
@@ -428,7 +428,7 @@ $('#input-episode-number').keyup(function() {
 });
 </script>
 <link href="assets/plugins/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script src="assets/plugins/jasny-bootstrap/js/jasny-bootstrap.min.js" type="text/javascript" language="javascript"></script> 
+<script src="assets/plugins/jasny-bootstrap/js/jasny-bootstrap.min.js" type="text/javascript" language="javascript"></script>
 
 <link href="assets/plugins/uploader/css/uploadfile.css" rel="stylesheet">
 <script src="assets/plugins/uploader/js/jquery.uploadfile.min.js"></script>
@@ -453,11 +453,11 @@ $(document).ready(function(){
 				//$("#status").html("<font color='red'>image is uploaded. </font>");
 				//var pic_id = '<input type="hidden" name="more_pic[]" value="'+obj.msg+'" />';
 				$('#file-name').val(obj.msg);
-				refresh_image(obj.msg);
+				refresh_image(obj.msg.replace("https://s3-ap-southeast-2.amazonaws.com/ptvs3/news/",''));
 				//window.location.href = "front/videos/"+$("#video_id").val();
 			}
 		},
-		onError: function(files,status,errMsg){		
+		onError: function(files,status,errMsg){
 			$("#status").html("<font color='red'>"+errMsg+"</font>");
 		}
 

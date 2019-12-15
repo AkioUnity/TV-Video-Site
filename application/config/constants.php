@@ -175,6 +175,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 define('READ_FILES_PATH','http://brochure.cloud/ftp/');
 define('MAILCHIMPLIST_1','8b1199f524');
 
+define('S3_url','https://s3-ap-southeast-2.amazonaws.com/ptvs3/news/');
 
 
 

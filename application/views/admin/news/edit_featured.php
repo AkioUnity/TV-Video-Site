@@ -269,7 +269,7 @@ if($news_tag_list){
                                 <table class="" style="margin-left:10px">
                                     <tbody class="files" id="product_files_content">
                                     <tr class="template-download fade in" id="delete-file">
-                                        <td width="60%" class="name"><?= $form_data->video_file ?></td>
+                                        <td width="60%" class="name"><?= str_replace(S3_url,'',$form_data->video_file) ?></td>
                                         <td width="10%" align="right" class="delete">
                                             <a href="javascript:void(0);" class="btn"
                                                onclick="delete_video(<?= $form_data->id ?>)">
@@ -458,7 +458,7 @@ if($news_tag_list){
                 //$("#status").html("<font color='red'>image is uploaded. </font>");
                 //var pic_id = '<input type="hidden" name="more_pic[]" value="'+obj.msg+'" />';
                 $('#file-name').val(obj.msg);
-                refresh_image(obj.msg);
+                refresh_image(obj.msg.replace("https://s3-ap-southeast-2.amazonaws.com/ptvs3/news/",''));
                 //window.location.href = "front/videos/"+$("#video_id").val();
             }
 
