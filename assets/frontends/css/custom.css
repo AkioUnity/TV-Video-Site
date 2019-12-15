@@ -1,0 +1,70 @@
+.btn-c-red{
+  box-shadow: none;
+  color: #f70100;
+  border: 1px solid #f70100;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Montserrat';
+  font-style: normal;
+  text-transform: uppercase;
+  padding: 10px 35px;
+  border-radius: 30px;
+  background-color: transparent;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.btn-c-red:hover{
+  text-decoration: none;
+  background-color: #f70100;
+  color: #fff;
+}
+.blue-btn{
+    color: #fff;
+    background-color: #1381df;
+    border-color: #2e6da4;
+	font-size:19px;
+}
+.blue-btn:hover{
+    color: #fff;
+    background-color: #2e6da4;
+    border-color: #2e6da4;
+}
+.home-serach{
+	padding-top:2px;
+	padding-bottom:15px;
+}
+.search-form .form-control{
+	height:42px;
+}
+.search-form .navbar-form{
+	width:100%;
+}
+.search-form .navbar-form .form-group{
+	width:80%;
+}
+.search-form .navbar-form .form-group .form-control{
+	width:100%;
+}
+footer .copy-right{
+	color:#06F;
+}
+.title_box { 
+    border: #CCC 1px solid; 
+	margin-bottom:10px;
+}
+.title_box #title { 
+    position: relative; 
+    top : -11px;
+    margin-left: 1em;
+    display: inline; 
+    background-color: white; 
+	padding:0 10px;
+	color:#212529;
+	text-transform:uppercase;
+	font-size:20px;
+}
+.title_box #content {
+	padding:10px;
+}
