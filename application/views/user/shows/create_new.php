@@ -448,18 +448,14 @@ $(document).ready(function(){
 				//$("#status").html("<font color='red'>image is uploaded. </font>");
 				//var pic_id = '<input type="hidden" name="more_pic[]" value="'+obj.msg+'" />';
 				$('#file-name').val(obj.msg);
-				refresh_image(obj.msg);
+                refresh_image(obj.msg.replace("https://s3-ap-southeast-2.amazonaws.com/ptvs3/news/",''));
 				//window.location.href = "front/videos/"+$("#video_id").val();
 			}
 		},
 		onError: function(files,status,errMsg){		
 			$("#status").html("<font color='red'>"+errMsg+"</font>");
 	//		$("#status").html("<font color='red'>There is some problem</font>");
-
 		}
-
-
-
 	});
 
 });

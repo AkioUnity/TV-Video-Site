@@ -124,7 +124,7 @@ if ($related_news) {
                             } else if (!empty($news_details->video_file)) {
                                 ?>
                                 <div class="post first text-bigger hover-dark entry-media">
-                                    <video controls width="100%">
+                                    <video controls width="100%" controlsList="nodownload">
                                         <source src="<?= $news_details->video_file ?>" type="video/mp4">
                                         Your browser does not support the video tag.
                                     </video>

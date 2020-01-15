@@ -137,13 +137,14 @@
         $('.video-player').each(function () {
             var _video = $(this);
             let link = _video.attr("href");
-            if (link.indexOf('s3-ap-southeast-2.amazonaws.com') > 0) {
+            // console.log(link);
+            if (link!=null && link.indexOf('s3-ap-southeast-2.amazonaws.com') > 0) {
                 console.log("video-player: aws video " + link);
                 video_id++;
                 let aws_video_id='aws-video'+video_id;
                 _video.attr("href", '#'+aws_video_id);
                 let popup = "<div id='"+aws_video_id+"' class=\"video-popup mfp-hide\">\n" +
-                    "                                                        <video controls width=\"100%\" preload=\"auto\">\n" +
+                    "                                                        <video controls controlsList=\"nodownload\" width=\"100%\" preload=\"auto\">\n" +
                     "                                                            <source src='"+link+"' type=\"video/mp4\">\n" +
                     "                                                        </video>\n" +
                     "                                                    </div>";
